@@ -1,0 +1,100 @@
+{% extends "templates/store/main.html" %}
+{% load static %}
+{% block content %}
+
+        <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area Start <<<<<<<<<<<<<<<<<<<< -->
+        <div class="breadcumb_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ol class="breadcrumb d-flex align-items-center">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">My Account</li>
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area End <<<<<<<<<<<<<<<<<<<< -->
+
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+        <section class="single_product_details_area section_padding_0_100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="single_product_desc">
+
+                            <h4 class="title">{{customer.name}} {{customer.surname}}<h4>
+
+            
+
+                            <div id="accordion" role="tablist">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Information</a>
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Email: {{customer.email}}</p>
+                                            <p>Phone Number: {{customer.phone}}</p>
+                                            <p>Total Orders: {{total}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h6 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Order History</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div class="table-responsive" style="font-size:10pt;">
+                                                <table class="table align-items-center table-flush">
+                                                    <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">Transaction ID</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for order in orders %}
+                                                        <tr>
+                                                        <th scope="row">
+                                                            {{order.transaction_id|floatformat:0}}
+                                                        </th>
+                                                        <td>
+                                                            {{order.status}}
+                                                        </td>
+                                                        <td>
+                                                            {{order.date_ordered}}
+                                                        </td>
+                                                        <td>
+                                                        <a class="btn btn-sm btn-info" href="{% url 'view_order' order.id %}">View</a>
+                                                        </td>
+                                                        </tr>
+                                                    {% endfor %}    
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> --> 
+
+{% endblock content %}
+

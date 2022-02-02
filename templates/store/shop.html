@@ -1,0 +1,36 @@
+
+{% extends "templates/store/main.html" %}
+{% load static %}
+{% block content %}
+        <section class="shop_grid_area section_padding_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="shop_grid_product_area">
+                            <div class="row">
+                                {% for product in products %}
+                                <!-- Single gallery Item -->
+                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="{{product.imageURL}}" alt="product_image">
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <h4 class="product-price">R{{product.price}}</h4>
+                                        <h6 class="product-price">{{product.name}}</h6>
+                                        <p>{{product.measurement}}</p>
+                                        <!-- Add to Cart -->
+                                        <button type="button" data-product="{{product.id}}" data-action="add" class="add-to-cart-btn btn btn-sm add-btn update-cart">ADD TO CART</button>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

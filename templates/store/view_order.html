@@ -1,0 +1,62 @@
+{% extends "templates/store/main.html" %}
+{% load static %}
+{% block content %}
+
+        <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area Start <<<<<<<<<<<<<<<<<<<< -->
+        <div class="breadcumb_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ol class="breadcrumb d-flex align-items-center">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item">My Account</li>
+                            <li class="breadcrumb-item active">View Order</li>
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area End <<<<<<<<<<<<<<<<<<<< -->
+
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+        <section class="single_product_details_area section_padding_0_100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="single_product_desc">
+                            <div class="order-details-confirmation">
+
+                                <div class="cart-page-heading">
+                                    <h3>#{{order.transaction_id|floatformat:0}}</h3>
+                                    <p>The Details</p>
+                                </div>      
+
+                                <h6>Delivery Details</h6>
+                                {% for address in addresses %}
+                                <p>Address: {{address.address}}</p>
+                                <p>City/Towwn: {{address.city}}</p>
+                                <p>Province: {{address.state}}</p>
+                                <p>Postcode: {{address.zipcode}}</p>
+                                {% endfor %}
+
+                                <ul class="order-details-form mb-4">
+                                    <li><span>Product</span>Quantity<span>Price</span></li>
+                                    {% for item in items %}
+                                    <li><span>{{item.product.name}} ({{item.product.measurement}}) </span>x{{item.quantity}}<span>R{{item.product.price}}</span></li>
+                                    {% endfor %}
+                                    <li><span style="font-weight:bold;">Total Due</span> <span>R {{order.get_cart_total|floatformat:2}}</span></li>
+                                </ul>
+                                <p>Status: {{order.status}}</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> --> 
+
+{% endblock content %}
+

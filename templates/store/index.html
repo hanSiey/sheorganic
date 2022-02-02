@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="S.H.E Organic  Body  &  SkinCare  is  an organic  luxury  brand  designed  to  help  one  relax  at  the  same time  help  boost  their  skin  health.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>S.H.E Organic Body & Skincare</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'img/core-img/logo.ico' %}">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- ****** Header Area Start ****** -->
+        <header class="header_area">
+            <!-- Top Header Area Start -->
+            <div class="top_header_area">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-end">
+
+                        <div class="col-12 col-lg-7">
+                            <div class="top_single_area d-flex align-items-center">
+                                <!-- Logo Area -->
+                                <div class="top_logo">
+                                    <a href="/"><img src="{% static 'img/core-img/logo_she.png' %}"  width="250px" height="200px" alt="sheorganics_logo"></a>
+                                </div>
+                                <!-- Cart & Menu Area -->
+                                <div class="header-cart-menu d-flex align-items-center ml-auto">
+                                    <!-- Cart Area -->
+                                    <div class="cart">
+                                        <a href="{% url 'cart' %}" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{cartItems}}</span> <i class="ti-bag"></i> Your Bag</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Header Area End -->
+            <div class="main_header_area">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-12 d-md-flex justify-content-between">
+                            <!-- Header Social Area -->
+                            <div class="header-social-area">
+                                <a href="https://www.instagram.com/she_organic_bodyandskincare/"><span class="karl-level">Share</span> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.whatsapp.com/catalog/27738836836/?app_absent=0"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            </div>
+                            <!-- Menu Area -->
+                            <div class="main-menu-area">
+                                <nav class="navbar navbar-expand-lg align-items-start">
+
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar" aria-controls="karl-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="ti-menu"></i></span></button>
+
+                                    <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
+                                        <ul class="navbar-nav animated" id="nav">
+                                            <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                                            {% if request.user.is_active %}
+                                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">LogOut</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Help Line -->
+                            <div class="help-line">
+                                {% if request.user.is_active and not request.user.is_superuser %}
+                                <a href="{% url 'customer' user.customer.id %}">{{user.customer.name}} {{user.customer.surname}}</a>
+                                {% else %}
+                                <a href="tel:0738836836"><i class="ti-headphone-alt"></i> 073 883 6836</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ****** Header Area End ****** -->
+
+        <!-- ****** Welcome Slides Area Start ****** -->
+        <section class="welcome_area">
+            <div class="welcome_slides owl-carousel">
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(/static/img/bg-img/bg-1.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">Designed by a woman but dont loose your breath yet,men are catered for as well.</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">S.H.E Organic Body & Skincare</h2>
+                                    <a href="{% url 'about' %}" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(/static/img/bg-img/bg-2.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* We offer good quality products for all skin types for both men and women.</h6>
+                                    <h2 data-animation="bounceInDown" data-delay="500ms" data-duration="500ms">Experience the Best Body & Skincare</h2>
+                                    <a href="{% url 'shop' %}" class="btn karl-btn" data-animation="fadeInRightBig" data-delay="1s" data-duration="500ms">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Welcome Slides Area End ****** -->
+        {% include "templates/store/model_area.html" %}
+        <!-- ****** New Arrivals Area Start ****** -->
+        <section class="new_arrivals_area section_padding_100_0 clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_heading text-center">
+                            <h2>Our Products</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="karl-projects-menu mb-100">
+                <div class="text-center portfolio-menu">
+                    <a href="{% url 'shop' %}" class="btn active">SEE ALL</a>
+
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row karl-new-arrivals">
+
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="{% static 'img/product-img/product-1.jpg' %}" alt="product_picture">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview1"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">R 250</h4>
+                            <h6 class="product-price">Coffee in the Morning Body Exfoliant</h6>
+                            <p>200ml</p>
+                        </div>
+                    </div>
+
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.3s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="{% static 'img/product-img/product-2.jpg' %}" alt="product_picture">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview2"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">R 200</h4>
+                            <h6 class="product-price">Hello Sunshine Body Exfoliant</h6>
+                            <p>200ml</p>
+                        </div>
+                    </div>
+
+                    <!-- Single gallery Item Start -->
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item access wow fadeInUpBig" data-wow-delay="0.4s">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="{% static 'img/product-img/product-3.jpg' %}" alt="product_picture">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview3"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                          <h4 class="product-price">R 180</h4>
+                            <h6 class="product-price">Botanical Gardens Bath Soak</h6>
+                            <p>200g</p>
+                        </div>
+                    </div>
+                    
+              
+                </div>
+                
+            </div>
+            
+        </section>
+        <!-- ****** New Arrivals Area End ****** -->
+
+        <!-- ****** Offer Area Start ****** -->
+        <section class="offer_area height-700 section_padding_100 bg-img" style="background-image: url(/static/img/bg-img/bg-5.jpg);">
+            <div class="container h-100">
+                <div class="row h-100 align-items-end justify-content-end">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="offer-content-area wow fadeInUp" data-wow-delay="1s">
+                            <h2>Why Our Clients Choose Us</h2>
+                            <p>We are an inexpensive premium organic body and skincare business dedicated to providing the finest service and goods to our customers. We believe in providing quality above quantity.</p>
+                            <p class="text-spacing-60">"If it doesn't nourish your skin and soul, let it go!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Offer Area End ****** -->
+
+        <!-- ****** Footer Area Start ****** -->
+        <footer class="footer_area">
+            <div class="container">
+                <div class="row">
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="single_footer_area">
+                            <div class="footer-logo">
+                                <img src="{% static 'img/core-img/logo_she.png' %}" width="200px" height="100px" alt="sheorganics_logo">
+                            </div>
+                            <div class="copywrite_text d-flex align-items-center">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="single_footer_area">
+                            <ul class="footer_widget_menu">
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                {% if request.user.is_active and not request.user.is_superuser %}
+                                <li><a href="{% url 'customer' user.customer.id %}">My Account</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'login' %}">Login</a></li>
+                                <li><a href="{% url 'register' %}">Create Account</a></li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="line"></div>
+
+                <!-- Footer Bottom Area Start -->
+                <div class="footer_bottom_area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="footer_social_area text-center">
+                                <a href="https://www.instagram.com/she_organic_bodyandskincare/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.whatsapp.com/catalog/27738836836/?app_absent=0"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- ****** Footer Area End ****** -->
+    </div>
+    <!-- /.wrapper end -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+
+</body>
+
+</html>

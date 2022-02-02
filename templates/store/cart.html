@@ -1,0 +1,78 @@
+{% extends "templates/store/main.html" %}
+{% load static %}
+{% block content %}
+        <!-- ****** Cart Area Start ****** -->
+        <div class="cart_area section_padding_100 clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="cart-table clearfix">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                        <tr>
+                                            <td class="cart_product_img d-flex align-items-center">
+                                                <a href="#"><img src="{{item.product.imageURL}}" alt="Product"></a>
+                                                <h6>{{item.product.name}}</h6>
+                                            </td>
+                                            <td class="price"><span>R{{item.product.price|floatformat:2}}</span></td>
+                                            <td class="qty">
+                                                <div class="quantity">
+                                                    <span class="qty-minus  update-cart" data-product="{{item.product.id}}" data-action="remove"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    {{item.quantity}}
+                                                    <span class="qty-plus  update-cart" data-product="{{item.product.id}}" data-action="add"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                </div>
+                                            </td>
+                                            <td class="total_price"><span>R{{item.get_total|floatformat:2}}</span></td>
+                                        </tr>
+                                    {% endfor %}    
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="cart-footer d-flex mt-30">
+                            <div class="back-to-shop w-50">
+                                <a href="{% url 'shop' %}">Continue shopping</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="shipping-method-area mt-70">
+                            <div class="cart-page-heading">
+                                <h5>Payment method</h5>
+                                <p>We will contact you once your order has been confirmed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="cart-total-area mt-70">
+                            <div class="cart-page-heading">
+                                <h5>Cart total</h5>
+                                <p>Final info</p>
+                            </div>
+
+                            <ul class="cart-total-chart">
+                                <li><span>Subtotal</span> <span>R{{order.get_cart_total|floatformat:2}}</span></li>
+                                <li><span>Delivery</span> <span>Free</span></li>
+                                <li><span><strong>Total</strong></span> <span><strong>R{{order.get_cart_total|floatformat:2}}</strong></span></li>
+                            </ul>
+                            <a href="{% url 'checkout' %}" class="btn karl-checkout-btn">Proceed to checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ****** Cart Area End ****** -->
+{% endblock content %}

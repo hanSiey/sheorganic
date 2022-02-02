@@ -1,0 +1,69 @@
+{% extends "templates/store/main.html" %}
+{% load static %}
+{% block content %}
+        <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area Start <<<<<<<<<<<<<<<<<<<< -->
+        <div class="breadcumb_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ol class="breadcrumb d-flex align-items-center">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Login</li>
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area End <<<<<<<<<<<<<<<<<<<< -->
+
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+        <section class="single_product_details_area section_padding_0_100">
+            <div class="container text-center align-content-center justify-content-center">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="single_product_desc">
+                            <div class="order-details-confirmation">
+
+                                <div class="cart-page-heading">
+                                    <h3>Log In</h3>
+                                    <p>Welcome Back!</p>
+                                </div>      
+
+                                <div class="container  mt-50 clearfix" style="width:50%;">
+                                    {% for message in messages %}
+                                        <h5 style="color:red;">{{message}}</h5>
+                                    {% endfor %}
+                                    
+                                    <form action="{% url 'login'  %}" id="form" method="POST">
+                                        {% csrf_token %}
+                                            <div class="col-md-12 mb-3">
+                                                <label for="first_name">First Name <span>*</span></label>
+                                                {{form.name}}
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <label for="email_address">Email Address <span>*</span></label>
+                                                {{form.email}}
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <label for="password">Password<span>*</span></label>
+                                                {{form.password1}}
+                                            </div>
+                        
+                                        <input type="submit" class="btn btn-sm karl-checkout-btn" value="LogIn">
+                                    </form>
+                                    <br/>
+                                    <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a><p>
+                                    <p>Forgot Password? <a href="{% url 'reset_password' %}">Reset</a><p>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> --> 
+
+{% endblock content %}

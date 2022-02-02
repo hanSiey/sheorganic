@@ -1,0 +1,82 @@
+{% extends "templates/store/main.html" %}
+{% load static %}
+{% block content %}
+        <!-- ****** Checkout Area Start ****** -->
+        <div class="checkout_area section_padding_100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-md-8">
+                        <div class="checkout_details_area mt-50 clearfix">
+
+                            <div class="cart-page-heading">
+                                <h5>Get In Touch</h5>
+                                <p>You can contact us any way that is convenient for you or send us a message using this form below.</p>
+                            </div>
+                            {% for message in messages %}
+                                <h5 style="color:red;">{{message}}</h5>
+                            {% endfor %}
+                            <form action="{% url 'contact'  %}" id="form" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="first_name">First Name <span>*</span></label>
+                                        {{form.name}}
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="last_name">Last Name <span>*</span></label>
+                                         {{form.surname}}
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <label for="email_address">Email Address <span>*</span></label>
+                                         {{form.email}}
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <label for="message">Message<span>*</span></label>
+                                         {{form.message}}
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn karl-checkout-btn" value="Send Message">
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4 ml-lg-auto">
+                        <div class="order-details-confirmation">
+
+                            <div class="cart-page-heading">
+                                <h6>Address</h6>
+                                <p>Maxwell Street, Kempton Park, Gauteng 1619</p>
+                            </div>
+                            <div class="cart-page-heading">
+                                <h6>Phone</h6>
+                                <p>073 883 6836</p>
+                            </div>
+                            <div class="cart-page-heading">
+                                <h6>Email</h6>
+                                <p>Shebeautyandorganics@gmail.com</p>
+                            </div>
+                            <div class="cart-page-heading">
+                                <h6>Opening Hours</h6>
+                                <p>
+                                    <ul>
+                                        <li>Mon-Fri: 9:00 am – 18:00 pm</li>
+                                        <li>Saturday: 10:00 am- 14:00 pm</li>
+                                        <li>Sunday: Closed</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ****** Checkout Area End ****** -->
+        <script type="text/javascript">
+            var form = document.getElementById('form')
+            form.addEventListener('submit', function(e){
+                alert('Message Sent')
+            })
+        </script>
+{% endblock content %}

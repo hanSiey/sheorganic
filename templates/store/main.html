@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="S.H.E Organic  Body  &  SkinCare  is  an organic  luxury  brand  designed  to  help  one  relax  at  the  same time  help  boost  their  skin  health.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>S.H.E Organic Body & Skincare</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'img/core-img/logo.ico' %}">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <script type="text/javascript">
+      var user = '{{request.user}}'
+
+      function getToken(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                  var cookie = cookies[i].trim();
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+      var csrftoken = getToken('csrftoken')
+
+      function getCookie(name) {
+          // Split cookie string and get all individual name=value pairs in an array
+          var cookieArr = document.cookie.split(";");
+
+          // Loop through the array elements
+          for(var i = 0; i < cookieArr.length; i++) {
+              var cookiePair = cookieArr[i].split("=");
+
+              /* Removing whitespace at the beginning of the cookie name
+              and compare it with the given string */
+              if(name == cookiePair[0].trim()) {
+                  // Decode the cookie value and return
+                  return decodeURIComponent(cookiePair[1]);
+              }
+          }
+
+          // Return null if not found
+          return null;
+      }
+      var cart = JSON.parse(getCookie('cart'))
+
+      if (cart == undefined){
+        cart = {}
+        console.log('Cart Created!', cart)
+        document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+      }
+      console.log('Cart:', cart)
+    
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- ****** Header Area Start ****** -->
+        <header class="header_area bg-img background-overlay-white" style="background-image: url(/static/img/bg-img/bg-1.jpg);">
+            <!-- Top Header Area Start -->
+            <div class="top_header_area">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-end">
+
+                        <div class="col-12 col-lg-7">
+                            <div class="top_single_area d-flex align-items-center">
+                                <!-- Logo Area -->
+                                <div class="top_logo">
+                                    <a href="/"><img src="{% static 'img/core-img/logo_she.png' %}" width="250px" height="200px" alt="sheorganics_logo"></a>
+                                </div>
+                                <!-- Cart & Menu Area -->
+                                <div class="header-cart-menu d-flex align-items-center ml-auto">
+                                    <!-- Cart Area -->
+                                    <div class="cart">
+                                        <a href="{% url 'cart' %}" id="header-cart-btn" target="_blank"><span class="cart_quantity" id="cart-total">{{cartItems}}</span> <i class="ti-bag"></i> Your Bag R{{order.get_cart_total|floatformat:2}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Header Area End -->
+            <div class="main_header_area">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-12 d-md-flex justify-content-between">
+                            <!-- Header Social Area -->
+                            <div class="header-social-area">
+                                <a href="https://www.instagram.com/she_organic_bodyandskincare/"><span class="karl-level">Share</span> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.whatsapp.com/catalog/27738836836/?app_absent=0"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            </div>
+                            <!-- Menu Area -->
+                            <div class="main-menu-area">
+                                <nav class="navbar navbar-expand-lg align-items-start">
+
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar" aria-controls="karl-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="ti-menu"></i></span></button>
+
+                                    <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
+                                        <ul class="navbar-nav animated" id="nav">
+                                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Help Line -->
+                            <div class="help-line">
+                                <a href="tel:0738836836"><i class="ti-headphone-alt"></i> 073 883 6836</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ****** Header Area End ****** -->
+        {% block content %}
+
+
+
+        {% endblock content %}
+        <!-- ****** Footer Area Start ****** -->
+        <footer class="footer_area">
+            <div class="container">
+                <div class="row">
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="single_footer_area">
+                            <div class="footer-logo">
+                                <img src="{% static 'img/core-img/logo_she.png' %}" width="200px" height="100px" alt="sheorganics_logo">
+                            </div>
+                            <div class="copywrite_text d-flex align-items-center">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Footer Area Start -->
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="single_footer_area">
+                            <ul class="footer_widget_menu">
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                {% if request.user.is_active and not request.user.is_superuser %}
+                                <li><a href="{% url 'customer' user.customer.id %}">My Account</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'login' %}">Login</a></li>
+                                <li><a href="{% url 'register' %}">Create Account</a></li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="line"></div>
+
+                <!-- Footer Bottom Area Start -->
+                <div class="footer_bottom_area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="footer_social_area text-center">
+                                <a href="https://www.instagram.com/she_organic_bodyandskincare/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.whatsapp.com/catalog/27738836836/?app_absent=0"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- ****** Footer Area End ****** -->
+    </div>
+    <!-- /.wrapper end -->
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+
+</body>
+
+</html>
